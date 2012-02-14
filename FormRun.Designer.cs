@@ -37,6 +37,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.comboBoxExe = new System.Windows.Forms.ComboBox();
             this.buttonSearch = new System.Windows.Forms.Button();
+            this.checkBoxInjectProcess = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -44,7 +45,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(9, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(119, 23);
+            this.label1.Size = new System.Drawing.Size(95, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Executable file";
             // 
@@ -64,7 +65,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(9, 59);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(247, 23);
+            this.label2.Size = new System.Drawing.Size(197, 16);
             this.label2.TabIndex = 3;
             this.label2.Text = "AGTH key (e.g. /HA-4@123456)";
             // 
@@ -73,7 +74,7 @@
             this.textBoxKey.Location = new System.Drawing.Point(12, 80);
             this.textBoxKey.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxKey.Name = "textBoxKey";
-            this.textBoxKey.Size = new System.Drawing.Size(405, 29);
+            this.textBoxKey.Size = new System.Drawing.Size(405, 22);
             this.textBoxKey.TabIndex = 4;
             // 
             // checkBoxFixLocale
@@ -84,7 +85,7 @@
             this.checkBoxFixLocale.Location = new System.Drawing.Point(12, 113);
             this.checkBoxFixLocale.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.checkBoxFixLocale.Name = "checkBoxFixLocale";
-            this.checkBoxFixLocale.Size = new System.Drawing.Size(149, 27);
+            this.checkBoxFixLocale.Size = new System.Drawing.Size(122, 20);
             this.checkBoxFixLocale.TabIndex = 5;
             this.checkBoxFixLocale.Text = "Fix game locale";
             this.checkBoxFixLocale.UseVisualStyleBackColor = true;
@@ -93,7 +94,7 @@
             // 
             this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button4.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button4.Location = new System.Drawing.Point(423, 115);
             this.button4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button4.Name = "button4";
@@ -106,7 +107,7 @@
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button3.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.button3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button3.Location = new System.Drawing.Point(317, 115);
             this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button3.Name = "button3";
@@ -121,7 +122,7 @@
             this.comboBoxExe.Location = new System.Drawing.Point(12, 30);
             this.comboBoxExe.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBoxExe.Name = "comboBoxExe";
-            this.comboBoxExe.Size = new System.Drawing.Size(405, 29);
+            this.comboBoxExe.Size = new System.Drawing.Size(405, 24);
             this.comboBoxExe.TabIndex = 9;
             this.comboBoxExe.TextChanged += new System.EventHandler(this.comboBoxExe_TextChanged);
             // 
@@ -136,13 +137,25 @@
             this.buttonSearch.UseVisualStyleBackColor = true;
             this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
             // 
+            // checkBoxInjectProcess
+            // 
+            this.checkBoxInjectProcess.AutoSize = true;
+            this.checkBoxInjectProcess.Location = new System.Drawing.Point(158, 113);
+            this.checkBoxInjectProcess.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.checkBoxInjectProcess.Name = "checkBoxInjectProcess";
+            this.checkBoxInjectProcess.Size = new System.Drawing.Size(111, 20);
+            this.checkBoxInjectProcess.TabIndex = 11;
+            this.checkBoxInjectProcess.Text = "Inject Process";
+            this.checkBoxInjectProcess.UseVisualStyleBackColor = true;
+            // 
             // FormRun
             // 
             this.AcceptButton = this.button3;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.button4;
             this.ClientSize = new System.Drawing.Size(535, 165);
+            this.Controls.Add(this.checkBoxInjectProcess);
             this.Controls.Add(this.buttonSearch);
             this.Controls.Add(this.comboBoxExe);
             this.Controls.Add(this.button4);
@@ -152,7 +165,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
-            this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
@@ -179,5 +192,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.ComboBox comboBoxExe;
         private System.Windows.Forms.Button buttonSearch;
+        private System.Windows.Forms.CheckBox checkBoxInjectProcess;
     }
 }

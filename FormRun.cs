@@ -49,6 +49,9 @@ namespace ChiiTrans
             try
             {
                 string args = "";
+                Boolean InjectProcess = false;
+                if (checkBoxInjectProcess.Checked)
+                    InjectProcess=true;
                 if (checkBoxFixLocale.Checked)
                     args += "/L ";
                 if (textBoxKey.Text != "")
@@ -65,7 +68,7 @@ namespace ChiiTrans
                         }
                     }
                 }
-                Global.RunGame(comboBoxExe.Text, args);
+                Global.RunGame(comboBoxExe.Text, args,InjectProcess);
                 Global.RunScript("ClearWelcome");
             }
             catch (Exception ex)

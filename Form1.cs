@@ -92,7 +92,7 @@ namespace ChiiTrans
             {
                 try
                 {
-                    Global.RunGame(app, keys);
+                    Global.RunGame(app, keys,false);
                 }
                 catch (Exception ex)
                 {

@@ -58,13 +58,30 @@ namespace ChiiTrans
             return runScript(name, args);
         }
 
-        public static void RunGame(string app, string args)
+        public static void RunGame(string app, string args,Boolean InjectProcess)
         {
+            
+            string addparam="";
             string cmd = Path.Combine(Application.StartupPath, "agth\\agth.exe");
             ProcessStartInfo si = new ProcessStartInfo();
-            si.FileName = cmd;
             app = Path.GetFullPath(app);
-            si.Arguments = args + " \"" + app + '"';
+            ProcessStartInfo Prog = new ProcessStartInfo();
+
+            if (InjectProcess)
+            {
+                Prog.FileName = app;
+                Prog.WorkingDirectory = Path.GetDirectoryName(app);
+                Process Proc = Process.Start(Prog);
+                addparam = "/p" + Proc.Id.ToString();
+
+            }
+            else
+                addparam = " \"" + app + '"';
+
+            si.FileName = cmd;
+            //si.Arguments = args + " \"" + app + '"';
+            //si.Arguments = args + " /p2956";
+            si.Arguments = args + addparam;
             si.UseShellExecute = true;
             si.WorkingDirectory = Path.GetDirectoryName(app);
             Global.agth.TurnOn();
@@ -72,6 +89,7 @@ namespace ChiiTrans
             Global.agth.SetCurrentAppKeys(args);
             Global.agth.appProfiles.str["last_run"] = app;
             Process.Start(si);
+
         }
 
         public static string AppNameFromPid(uint pid)
