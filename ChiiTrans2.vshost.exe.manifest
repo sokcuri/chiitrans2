@@ -4,7 +4,7 @@
   <description asmv2:iconFile="scroll.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="ChiiTrans2" version="2.16.4427.34164" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="ChiiTrans2" version="2.16.4428.29243" language="neutral" processorArchitecture="msil" />
     <commandLine file="ChiiTrans2.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -54,13 +54,13 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ChiiTrans2.exe" size="422400">
-      <assemblyIdentity name="ChiiTrans2" version="2.16.4427.34164" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="ChiiTrans2" version="2.16.4428.29243" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>9p1g9eK+YmKX8cV8MJYKOJ4tIzs=</dsig:DigestValue>
+        <dsig:DigestValue>K1svaZk9EMJXHeF0o3m5bwDLaO8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -332,7 +332,16 @@ namespace ChiiTrans
         public static string ReadAnswer(HttpWebRequest req, Encoding encoding)
         {
             WebResponse res = req.GetResponse();
+            ////HttpWebResponse myHttpWebResponse = (HttpWebResponse)req.GetResponse();
+            ////Stream receiveStream = myHttpWebResponse.GetResponseStream();
+            ////Encoding encode = System.Text.Encoding.GetEncoding("utf-8");
+            ////StreamReader readStream = new StreamReader(receiveStream, encode);
+            ////string outt=readStream.ReadToEnd();
             return new StreamReader(req.GetResponse().GetResponseStream(), encoding).ReadToEnd();
+            ////myHttpWebResponse.Close();
+            // Releases the resources of the Stream.
+            ////readStream.Close();
+            ////return outt;
         }
 
         public static void WritePost(HttpWebRequest req, string data)
@@ -366,15 +375,69 @@ namespace ChiiTrans
         
         public string TranslateBabylon()
         {
-            string url = "http://translation.babylon.com/post_post.php";
-            string src = sourceNew.Replace('「', '\"').Replace('」', '\"');
-            string query = "mytextarea1=" + UrlEncode(src) + "&lps=8&lpt=0";
-            HttpWebRequest req = CreateHTTPRequest(url);
-            WritePost(req, query);
-            string res = ReadAnswer(req);
-            if (res.ToLower().IndexOf(">internal server error<") >= 0)
-                throw new Exception();
-            return res;
+            //string url = "http://translation.babylon.com/post_post.php";
+            ////string url = "http://translation.babylon.com";
+            //string url = "http://translation.babylon.com/japanese/to-english/";
+            string src = sourceFixed.Replace('「', '"').Replace('」', '"');
+            //string query = "mytextarea1=" + UrlEncode(src) + "&lps=8&lpt=0";
+            string url = "http://translation.babylon.com/translate/babylon.php";
+            string query1 = "?v=1.0&q=" + UrlEncode(src) + "&langpair=8%7C0&callback=babylonTranslator.callback&context=babylon.8.0._babylon_api_response";
+            /////string query = "translator_input="+UrlEncode(sourceFixed.Replace('　', ' ')+"&lps=8&lpt=0&translations_count=1");
+            ////using (var client = new System.Net.Sockets.TcpClient())
+            ////{
+            ////    client.Connect("translation.babylon.com", 80);
+
+            ////    using (var stream = client.GetStream())
+            ////    {
+            ////        var writer = new StreamWriter(stream);
+            ////        writer.WriteLine("GET /japanese/to-english/" + query + "/" + " HTTP/1.1");
+            ////        writer.WriteLine("Host: translation.babylon.com");
+            ////        writer.WriteLine("User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.2) Gecko/20090805 Shiretoko/3.5.2");
+            ////        writer.WriteLine("Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+            ////        writer.WriteLine("Accept-Language: en-us,en;q=0.5");
+            ////        writer.WriteLine("Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7");
+            ////        writer.WriteLine("Connection: close");
+            ////        writer.WriteLine(string.Empty);
+            ////        writer.WriteLine(string.Empty);
+            ////        writer.WriteLine(string.Empty);
+            ////        writer.Flush();
+
+            ////        var reader = new StreamReader(stream);
+            ////        var response = reader.ReadToEnd();
+            ////        // When looking at the response it correctly reads 
+            ////        // Location: http://www.site.com/buy/κινητή-σταθερή-τηλεφωνία/c/cn69569/
+            ////    }
+            ////}
+            //using (WebClient wc = new WebClient())
+            //{
+            //    ///wc.Encoding = System.Text.Encoding.UTF8;
+            //    wc.Proxy = null;
+            //    wc.Headers.Add("User-Agent","Mozilla/5.0 (Windows NT 6.1; WOW64; rv:10.0.1) Gecko/20100101 Firefox/10.0.1");
+            //    wc.Headers.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+            //    wc.Headers.Add("Accept-Language","ru-ru,ru;q=0.8,en-us;q=0.5,en;q=0.3");
+            //    wc.Headers.Add("Accept-Encoding", "deflate");
+            //    wc.Headers.Add("DNT", "1");
+            //    ans = wc.DownloadString(url+query);
+
+            //    foreach (string name in wc.ResponseHeaders.Keys)
+            //        Console.WriteLine(name + "=" + wc.ResponseHeaders[name]);
+            //}
+
+            ///HttpWebRequest req = CreateHTTPRequest(url + query);
+            ///req.ContentType = "text/html; charset=UTF-8";
+            ///string ans = ReadAnswer(req);
+
+            
+            ///HttpWebRequest req = CreateHTTPRequest(url);
+            HttpWebRequest req = CreateHTTPRequest(url+query1);
+            ///WritePost(req, query);
+            string reqq=ReadAnswer(req);
+            string result = FindSubString(reqq, "{\"translatedText\":\"", "\"}").Replace('\\', ' ');
+            		  		
+            //string result = ReadAnswer(req);
+            ///if (result.ToLower().IndexOf(">internal server error<") >= 0)
+            ///    throw new Exception();
+            return result;
         }
 
         public string TranslateSDL()

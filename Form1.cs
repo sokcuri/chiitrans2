@@ -626,9 +626,9 @@ namespace ChiiTrans
             }
             else
             {
-                if (MessageBox.Show("Go to ChiiTrans' home page?\r\nhttp://sites.google.com/site/chiitranslator/", "ChiiTrans v." + Application.ProductVersion, MessageBoxButtons.OKCancel) == DialogResult.OK)
+                if (MessageBox.Show("Go to ChiiTrans2 Code.Google page?\r\nhttp://code.google.com/p/chiitrans2/", "ChiiTrans v." + Application.ProductVersion, MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
-                    Process.Start("http://sites.google.com/site/chiitranslator/");
+                    Process.Start("http://code.google.com/p/chiitrans2/");
                 }
             }
         }
