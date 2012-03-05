@@ -77,8 +77,9 @@ namespace ChiiTrans
             try
             {
                 gridResults.Rows.Clear();
-                var request = Translation.CreateHTTPRequest("http://agthdb.bakastyle.com/games/search?q=" + Translation.UrlEncode(title));
-                request.Accept = "application/json";
+                //var request = Translation.CreateHTTPRequest("http://agthdb.bakastyle.com/games/search?q=" + Translation.UrlEncode(title));
+                var request = Translation.CreateHTTPRequest("http://agthdb.bakastyle.com/games/search?utf8=✓&q=" + Translation.UrlEncode(title));
+                //request.Accept = "application/json";
                 string res = Translation.ReadAnswer(request);
                 JsArray js = (JsArray)Json.Parse(res);
                 for (var i = 0; i < js.length; ++i)

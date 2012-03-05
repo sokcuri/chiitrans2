@@ -72,13 +72,16 @@ namespace ChiiTrans
         private AgthMessageList messages;
         public Dictionary<string, BlockList> blocks;
         public bool manualMonitoring;
+        public string methodInject;
         public string CurrentApp { get; private set; }
         private string CurrentAppKeys;
         private Dictionary<uint, string> pidToApp;
         public JsObject appProfiles;
+        public string[] methodsInject;
         
         public Agth()
         {
+
             is_on = false;
             isConnected = false;
             lastGoodName = false;
@@ -86,9 +89,11 @@ namespace ChiiTrans
             blocks = new Dictionary<string, BlockList>();
             newMessages = new AutoResetEvent(false);
             manualMonitoring = false;
+            methodInject = "";
             CurrentApp = null;
             pidToApp = new Dictionary<uint, string>();
             oldPid = 0;
+            methodsInject = new string[] { "Run through AGTH", "Inject AGTH after launch", "AGTH inject into a running process" };
         }
 
         public bool TryConnectPipe()
@@ -375,6 +380,7 @@ namespace ChiiTrans
         {
             JsObject data = appProfiles["profiles"][app];
             data.str["keys"] = CurrentAppKeys;
+            data.str["methodInject"] = methodInject;
             JsArray mon = new JsArray();
             foreach (KeyValuePair<string, BlockList> kvp in blocks)
             {
@@ -400,6 +406,7 @@ namespace ChiiTrans
                 }
                 manualMonitoring = data.num["manual"] != 0;
                 CurrentAppKeys = data.str["keys"];
+                methodInject = data.str["methodInject"];
             }
         }
 
@@ -433,6 +440,11 @@ namespace ChiiTrans
         public void SetCurrentAppKeys(string keys)
         {
             CurrentAppKeys = keys;
+        }
+
+        public void SetCurrentAppMethodInject(string method)
+        {
+            methodInject = method;
         }
     }
 }

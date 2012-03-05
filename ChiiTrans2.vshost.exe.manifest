@@ -4,7 +4,7 @@
   <description asmv2:iconFile="scroll.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="ChiiTrans2" version="2.16.4428.29243" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="ChiiTrans2" version="2.16.4447.36410" language="neutral" processorArchitecture="msil" />
     <commandLine file="ChiiTrans2.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -53,24 +53,24 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ChiiTrans2.exe" size="422400">
-      <assemblyIdentity name="ChiiTrans2" version="2.16.4428.29243" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ChiiTrans2.exe" size="423424">
+      <assemblyIdentity name="ChiiTrans2" version="2.16.4447.36410" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>K1svaZk9EMJXHeF0o3m5bwDLaO8=</dsig:DigestValue>
+        <dsig:DigestValue>lNFEIr82VhSHAAxb72m1SA/vgsI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="changelog.txt" size="7158">
+  <file name="changelog.txt" size="478">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>3AebjsyiTF5Y55JwC+tw40yhWLE=</dsig:DigestValue>
+      <dsig:DigestValue>aXTcLIaha410gFTeucgD9zOVj4k=</dsig:DigestValue>
     </hash>
   </file>
   <file name="ChiiTrans2.exe.config" size="144">

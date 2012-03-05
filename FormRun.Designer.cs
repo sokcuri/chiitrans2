@@ -37,7 +37,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.comboBoxExe = new System.Windows.Forms.ComboBox();
             this.buttonSearch = new System.Windows.Forms.Button();
-            this.checkBoxInjectProcess = new System.Windows.Forms.CheckBox();
+            this.comboBoxInject = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -82,7 +82,7 @@
             this.checkBoxFixLocale.AutoSize = true;
             this.checkBoxFixLocale.Checked = true;
             this.checkBoxFixLocale.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxFixLocale.Location = new System.Drawing.Point(12, 113);
+            this.checkBoxFixLocale.Location = new System.Drawing.Point(12, 143);
             this.checkBoxFixLocale.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.checkBoxFixLocale.Name = "checkBoxFixLocale";
             this.checkBoxFixLocale.Size = new System.Drawing.Size(122, 20);
@@ -95,7 +95,7 @@
             this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button4.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button4.Location = new System.Drawing.Point(423, 115);
+            this.button4.Location = new System.Drawing.Point(423, 126);
             this.button4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(100, 37);
@@ -108,7 +108,7 @@
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button3.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button3.Location = new System.Drawing.Point(317, 115);
+            this.button3.Location = new System.Drawing.Point(317, 126);
             this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(100, 37);
@@ -137,16 +137,15 @@
             this.buttonSearch.UseVisualStyleBackColor = true;
             this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
             // 
-            // checkBoxInjectProcess
+            // comboBoxInject
             // 
-            this.checkBoxInjectProcess.AutoSize = true;
-            this.checkBoxInjectProcess.Location = new System.Drawing.Point(158, 113);
-            this.checkBoxInjectProcess.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.checkBoxInjectProcess.Name = "checkBoxInjectProcess";
-            this.checkBoxInjectProcess.Size = new System.Drawing.Size(111, 20);
-            this.checkBoxInjectProcess.TabIndex = 11;
-            this.checkBoxInjectProcess.Text = "Inject Process";
-            this.checkBoxInjectProcess.UseVisualStyleBackColor = true;
+            this.comboBoxInject.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxInject.FormattingEnabled = true;
+            this.comboBoxInject.Location = new System.Drawing.Point(12, 109);
+            this.comboBoxInject.Name = "comboBoxInject";
+            this.comboBoxInject.Size = new System.Drawing.Size(279, 24);
+            this.comboBoxInject.TabIndex = 12;
+            this.comboBoxInject.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // FormRun
             // 
@@ -154,8 +153,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.button4;
-            this.ClientSize = new System.Drawing.Size(535, 165);
-            this.Controls.Add(this.checkBoxInjectProcess);
+            this.ClientSize = new System.Drawing.Size(535, 176);
+            this.Controls.Add(this.comboBoxInject);
             this.Controls.Add(this.buttonSearch);
             this.Controls.Add(this.comboBoxExe);
             this.Controls.Add(this.button4);
@@ -192,6 +191,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.ComboBox comboBoxExe;
         private System.Windows.Forms.Button buttonSearch;
-        private System.Windows.Forms.CheckBox checkBoxInjectProcess;
+        private System.Windows.Forms.ComboBox comboBoxInject;
     }
 }

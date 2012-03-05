@@ -58,7 +58,7 @@ namespace ChiiTrans
             return runScript(name, args);
         }
 
-        public static void RunGame(string app, string args,Boolean InjectProcess)
+        public static void RunGame(string app, string args,string methodInject)
         {
             
             string addparam="";
@@ -66,18 +66,24 @@ namespace ChiiTrans
             ProcessStartInfo si = new ProcessStartInfo();
             app = Path.GetFullPath(app);
             ProcessStartInfo Prog = new ProcessStartInfo();
-
-            if (InjectProcess)
+            int myIndex = Array.IndexOf(Global.agth.methodsInject, methodInject);
+            if (myIndex == -1)
+                myIndex = 0;
+            switch (myIndex)
             {
-                Prog.FileName = app;
-                Prog.WorkingDirectory = Path.GetDirectoryName(app);
-                Process Proc = Process.Start(Prog);
-                addparam = "/p" + Proc.Id.ToString();
-
+                case 0:
+                    addparam = " \"" + app + '"';
+                    break;
+                case 1:
+                    Prog.FileName = app;
+                    Prog.WorkingDirectory = Path.GetDirectoryName(app);
+                    Process Proc = Process.Start(Prog);
+                    addparam = "/p" + Proc.Id.ToString();
+                    break;
+                case 2:
+                    addparam = " /pn" + Path.GetFileName(app);
+                    break;
             }
-            else
-                addparam = " \"" + app + '"';
-
             si.FileName = cmd;
             //si.Arguments = args + " \"" + app + '"';
             //si.Arguments = args + " /p2956";
@@ -87,7 +93,9 @@ namespace ChiiTrans
             Global.agth.TurnOn();
             Global.agth.SetCurrentApp(app);
             Global.agth.SetCurrentAppKeys(args);
+            Global.agth.SetCurrentAppMethodInject(methodInject);
             Global.agth.appProfiles.str["last_run"] = app;
+            //Global.agth.appProfiles.str["methodInject"] = methodInject;
             Process.Start(si);
 
         }

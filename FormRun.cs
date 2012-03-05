@@ -49,9 +49,8 @@ namespace ChiiTrans
             try
             {
                 string args = "";
-                Boolean InjectProcess = false;
-                if (checkBoxInjectProcess.Checked)
-                    InjectProcess=true;
+                string methodInject = comboBoxInject.SelectedItem.ToString();
+                
                 if (checkBoxFixLocale.Checked)
                     args += "/L ";
                 if (textBoxKey.Text != "")
@@ -68,7 +67,7 @@ namespace ChiiTrans
                         }
                     }
                 }
-                Global.RunGame(comboBoxExe.Text, args,InjectProcess);
+                Global.RunGame(comboBoxExe.Text, args, methodInject);
                 Global.RunScript("ClearWelcome");
             }
             catch (Exception ex)
@@ -97,15 +96,41 @@ namespace ChiiTrans
         {
             comboBoxExe.Items.Clear();
             comboBoxExe.Items.AddRange(Global.agth.appProfiles["profiles"].Keys.ToArray());
+            
+            //string[] methodsInject = new string[] { "Run through AGTH", "Inject AGTH after launch", "AGTH inject into a running process" };
+            comboBoxInject.Items.Clear();
+            comboBoxInject.Items.AddRange(Global.agth.methodsInject);
+
             if (exeName == null)
             {
                 comboBoxExe.Text = Global.agth.appProfiles.str["last_run"];
+                string text = comboBoxExe.Text;
+                if (Global.agth.appProfiles["profiles"].ContainsKey(text))
+                {
+                    string prof = Global.agth.appProfiles["profiles"][text].str["methodInject"];
+                    if (comboBoxInject.Items.Contains(prof))
+                        comboBoxInject.SelectedIndex = comboBoxInject.Items.IndexOf(prof);
+                    else
+                        comboBoxInject.SelectedIndex = 0;
+                    if (comboBoxInject.SelectedIndex != 0)
+                    {
+                        //checkBoxFixLocale.Checked = false;
+                        checkBoxFixLocale.Enabled = false;
+                        checkBoxFixLocale.Hide();
+                    }
+                    else
+                    {
+                        checkBoxFixLocale.Enabled = true;
+                        checkBoxFixLocale.Show();
+                    }
+                }
             }
             else
             {
                 comboBoxExe.Text = exeName;
                 exeName = null;
             }
+            
         }
 
         private void comboBoxExe_TextChanged(object sender, EventArgs e)
@@ -114,6 +139,11 @@ namespace ChiiTrans
             if (Global.agth.appProfiles["profiles"].ContainsKey(text))
             {
                 UpdateKeys(Global.agth.appProfiles["profiles"][text].str["keys"]);
+                string prof = Global.agth.appProfiles["profiles"][text].str["methodInject"];
+                if (comboBoxInject.Items.Contains(prof))
+                    comboBoxInject.SelectedIndex = comboBoxInject.Items.IndexOf(prof);
+                else
+                    comboBoxInject.SelectedIndex = 0;
             }
         }
 
@@ -124,6 +154,23 @@ namespace ChiiTrans
             {
                 textBoxKey.Text = res;
             }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxInject.SelectedIndex != 0)
+            {
+                //checkBoxFixLocale.Checked = false;
+                checkBoxFixLocale.Enabled = false;
+                checkBoxFixLocale.Hide();
+            }
+            else
+            {
+                checkBoxFixLocale.Enabled = true;
+                checkBoxFixLocale.Show();
+            }
+
+
         }
     }
 }
