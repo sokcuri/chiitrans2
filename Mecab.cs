@@ -71,13 +71,15 @@ namespace ChiiTrans
                 return false;
             return true;
         }
-
+        [System.Runtime.InteropServices.UnmanagedFunctionPointerAttribute(System.Runtime.InteropServices.CallingConvention.Cdecl)]
         private delegate IntPtr mecab_new2Type(string arg);
         private static mecab_new2Type mecab_new2;
 
+        [System.Runtime.InteropServices.UnmanagedFunctionPointerAttribute(System.Runtime.InteropServices.CallingConvention.Cdecl)]
         private delegate void mecab_destroyType(IntPtr mecab);
         private static mecab_destroyType mecab_destroy;
 
+        [System.Runtime.InteropServices.UnmanagedFunctionPointerAttribute(System.Runtime.InteropServices.CallingConvention.Cdecl)]
         private delegate IntPtr mecab_sparse_tostrType(IntPtr mecab, byte[] str);
         private static mecab_sparse_tostrType mecab_sparse_tostr;
 
@@ -91,9 +93,10 @@ namespace ChiiTrans
             public uint lsize;
             public uint rsize;
             public ushort version;
-            public IntPtr next;
+            public IntPtr next; 
         }
-
+        
+        [System.Runtime.InteropServices.UnmanagedFunctionPointerAttribute(System.Runtime.InteropServices.CallingConvention.Cdecl)]
         private delegate IntPtr mecab_dictionary_infoType(IntPtr mecab);
         private static mecab_dictionary_infoType mecab_dictionary_info;
         

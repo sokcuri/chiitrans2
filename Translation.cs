@@ -370,7 +370,10 @@ namespace ChiiTrans
 
             string src = sourceFixed.Replace('「', '"').Replace('」', '"');
             string url = "http://translation.babylon.com/translate/babylon.php";
-            string query1 = "?v=1.0&q=" + UrlEncode(src) + "&langpair=8%7C0&callback=babylonTranslator.callback&context=babylon.8.0._babylon_api_response";
+            string srclang = "8"; //Japanese
+            string destlang = "0"; //English
+            //string destlang = "7"; //Russian
+            string query1 = "?v=1.0&q=" + UrlEncode(src) + "&langpair="+srclang+"%7C"+destlang+"&callback=babylonTranslator.callback&context=babylon.8.0._babylon_api_response";
             HttpWebRequest req = CreateHTTPRequest(url+query1);
             string reqq=ReadAnswer(req);
             string result;

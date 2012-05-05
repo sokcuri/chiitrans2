@@ -7,7 +7,7 @@ using Microsoft.Win32;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
-
+ 
 namespace ChiiTrans
 {
     public enum AtlasInitStatus
@@ -58,6 +58,7 @@ namespace ChiiTrans
         {
             string path = Path.Combine(InstallPath, name);
             return PInvokeFunc.LoadLibraryEx(path, IntPtr.Zero, PInvokeFunc.LOAD_WITH_ALTERED_SEARCH_PATH);
+            //return PInvokeFunc.LoadLibraryEx("C:\\RarExt.dll", IntPtr.Zero, PInvokeFunc.LOAD_WITH_ALTERED_SEARCH_PATH);
         }
 
         private static bool UnloadLibrary(IntPtr handle)
@@ -74,8 +75,9 @@ namespace ChiiTrans
             atlecont = LoadLibrary("AtleCont.dll");
             if (atlecont == IntPtr.Zero)
             {
-                return false;
+                
                 //throw new System.ComponentModel.Win32Exception(Marshal.GetLastWin32Error());
+                return false;
             }
             /*awdict = LoadLibrary("awdict.dll");
             if (awdict == IntPtr.Zero)
@@ -93,22 +95,52 @@ namespace ChiiTrans
             return true;
         }
 
+        //private delegate int CreateEngineType(int x, int dir, int x3, byte[] x4);
+        /// Return Type: int
+        ///x: int
+        ///dir: int
+        ///x3: int
+        ///x4: char*
+        [System.Runtime.InteropServices.UnmanagedFunctionPointerAttribute(System.Runtime.InteropServices.CallingConvention.Cdecl)]
         private delegate int CreateEngineType(int x, int dir, int x3, byte[] x4);
         private static CreateEngineType CreateEngine;
 
         private delegate int DestroyEngineType();
         private static DestroyEngineType DestroyEngine;
 
-        private delegate int TranslatePairType(byte[] inp, out IntPtr outp, out IntPtr dunno, out uint maybeSize);
+        //private delegate int TranslatePairType(byte[] inp, out IntPtr outp, out IntPtr dunno, out uint maybeSize);
+        /// Return Type: int
+        ///in: char*
+        ///out: char**
+        ///dunno: void**
+        ///maybeSize: unsigned int*
+        [System.Runtime.InteropServices.UnmanagedFunctionPointerAttribute(System.Runtime.InteropServices.CallingConvention.Cdecl)]
+        private delegate int TranslatePairType(byte[] @inp, out System.IntPtr @outp, out System.IntPtr dunno, out uint maybeSize);
         private static TranslatePairType TranslatePair;
 
-        private delegate int AtlInitEngineDataType(int x1, int x2, IntPtr x3, int x4, IntPtr x5, int x6, int x7, int x8, int x9);
+        //private delegate int AtlInitEngineDataType(int x1, int x2, IntPtr x3, int x4, IntPtr x5, int x6, int x7, int x8, int x9);
+        /// Return Type: int
+        ///x1: int
+        ///x2: int
+        ///x3: int*
+        ///x4: int
+        ///x5: int*
+        [System.Runtime.InteropServices.UnmanagedFunctionPointerAttribute(System.Runtime.InteropServices.CallingConvention.Cdecl)]
+        private delegate int AtlInitEngineDataType(int x1, int x2, IntPtr x3, int x4, IntPtr x5);
         private static AtlInitEngineDataType AtlInitEngineData;
 
         //private delegate int SetTransStateType(int dunno);
         //private static SetTransStateType SetTransState;
 
-        private delegate int FreeAtlasDataType(IntPtr mem, IntPtr noSureHowManyArgs, IntPtr x3, IntPtr x4);
+        
+        //private delegate int FreeAtlasDataType(IntPtr mem, IntPtr noSureHowManyArgs, IntPtr x3, IntPtr x4);
+        /// Return Type: int
+        ///mem: void*
+        ///noSureHowManyArgs: void*
+        ///param2: void*
+        ///param3: void*
+        [System.Runtime.InteropServices.UnmanagedFunctionPointerAttribute(System.Runtime.InteropServices.CallingConvention.Cdecl)]
+        private delegate int FreeAtlasDataType(System.IntPtr mem, System.IntPtr noSureHowManyArgs, System.IntPtr x3, System.IntPtr x4);
         private static FreeAtlasDataType FreeAtlasData;
 
         //private delegate int AwuWordDelType(int x1, byte[] type, int x3, byte[] word);
@@ -195,7 +227,8 @@ namespace ChiiTrans
                 if (!LoadLibraries())
                     return false;
                 LoadInterface();
-                if (AtlInitEngineData(0, 2, Marshal.AllocHGlobal(30000), 0, Marshal.AllocHGlobal(30000), 0, 0, 0, 0) != 0)
+                //if (AtlInitEngineData(0, 2, Marshal.AllocHGlobal(30000), 0, Marshal.AllocHGlobal(30000), 0, 0, 0, 0) != 0)
+                if (AtlInitEngineData(0, 2, Marshal.AllocHGlobal(30000), 0, Marshal.AllocHGlobal(30000)) != 0)
                     return false;
                 string env = "General";
                 if (CreateEngine(1, 1, 0, Encoding932.GetBytes(env)) != 1)

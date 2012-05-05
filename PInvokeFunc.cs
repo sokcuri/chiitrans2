@@ -21,7 +21,12 @@ namespace ChiiTrans
         }
 
         [DllImport("kernel32.dll", CharSet = CharSet.Ansi, SetLastError = true)]
+        //[DllImport("kernel32.dll", SetLastError = true)]
         public static extern IntPtr LoadLibraryEx(string lpFileName, IntPtr hFile, uint dwFlags);
+        
+        [DllImport("kernel32.dll", CharSet = CharSet.Ansi, SetLastError = true)]
+        //[DllImport("kernel32.dll", SetLastError = true)]
+        public static extern IntPtr LoadLibrary(string lpFileName);
 
         public const uint LOAD_LIBRARY_AS_DATAFILE = 0x00000002;
         public const uint DONT_RESOLVE_DLL_REFERENCES = 0x00000001;

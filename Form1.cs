@@ -20,7 +20,7 @@ namespace ChiiTrans
         public static Form1 thisForm;
         public FormOptions formOptions;
         private FormAddReplacement formAddReplacement;
-
+         
         public Form1()
         {
             InitializeComponent();
